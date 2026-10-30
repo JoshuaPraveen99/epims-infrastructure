@@ -1,0 +1,56 @@
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Private keys, certificates, and credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_ed25519
+
+# OpenBao local state and sensitive runtime data
+openbao/data/
+openbao/logs/
+openbao/secrets/
+openbao/*.token
+**/root-token
+**/unseal-keys
+
+# MongoDB local data and backups
+mongodb-data/
+backups/
+*.dump
+*.bson
+*.archive
+
+# Logs
+*.log
+logs/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE and editor files
+.idea/
+.vscode/
+*.iml
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.bak
+
+# Build outputs
+build/
+out/
+target/
+.gradle/

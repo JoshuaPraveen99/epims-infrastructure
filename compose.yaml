@@ -1,0 +1,36 @@
+services:
+  mongodb:
+    image: mongo:8
+    container_name: epims-mongodb
+    command: ["mongod", "--auth"]
+    restart: unless-stopped
+
+    ports:
+      - "127.0.0.1:27017:27017"
+
+    volumes:
+      - epims-eps-core-data:/data/db
+      - mongo-configdb:/data/configdb
+
+
+    healthcheck:
+      test:
+        - CMD
+        - mongosh
+        - --quiet
+        - --eval
+        - "if (db.adminCommand({ ping: 1 }).ok !== 1) quit(1)"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+
+volumes:
+  epims-eps-core-data:
+    external: true
+    name: epims-eps-core-data
+
+  mongo-configdb:
+    external: true
+    name: 9962fbcb1944f0d775b92467e4f86edc3b83128f56a770da10f0211c4d78fe7f
